@@ -1,0 +1,6 @@
+{
+  "name": "UU Novel Chapter Reader & TXT Converter",
+  "description": "Read chapters from uukanshu.cc starting from any chapter, parse text preserving newlines and chapter titles, and export individual or batch TXT files.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
