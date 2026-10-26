@@ -325,7 +325,7 @@ export default function App() {
                 }}
                 className="px-4 py-2 bg-white dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 border border-stone-300 dark:border-zinc-700 rounded-xl text-xs font-medium hover:bg-stone-100 transition cursor-pointer"
               >
-                Reset to Target (Chapter 41)
+                Reset to Target (Chapter 1)
               </button>
             </div>
           </div>

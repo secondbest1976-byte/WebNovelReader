@@ -59,11 +59,11 @@ export const UrlBar: React.FC<UrlBarProps> = ({
             <button
               type="button"
               onClick={handleResetTarget}
-              title="Reset to default initial chapter (Chapter 41)"
+              title="Reset to default initial chapter (Chapter 1)"
               className="absolute right-2 px-2.5 py-1 text-[11px] font-medium text-amber-700 dark:text-amber-400 hover:bg-amber-100 dark:hover:bg-amber-950/60 rounded-md transition flex items-center gap-1 cursor-pointer"
             >
               <RotateCcw className="w-3 h-3" />
-              <span>Chapter 41</span>
+              <span>Chapter 1</span>
             </button>
           )}
         </div>

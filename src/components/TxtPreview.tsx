@@ -40,6 +40,9 @@ export const TxtPreview: React.FC<TxtPreviewProps> = ({
     downloadTxtFile(filename, generatedTxt);
   };
 
+  const totalCharacters = chapter.charCount || generatedTxt.length;
+  const isOver5000 = totalCharacters >= 5000;
+
   return (
     <div className="bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md rounded-2xl border border-stone-200/90 dark:border-zinc-800/90 shadow-sm overflow-hidden flex flex-col transition-all">
       {/* Action Header */}
@@ -90,19 +93,48 @@ export const TxtPreview: React.FC<TxtPreviewProps> = ({
 
           <div className="h-5 w-px bg-stone-300 dark:bg-zinc-700 mx-0.5 hidden sm:block" />
 
-          {/* Copy Button */}
+          {/* Copy Button (Red background if >= 5000 characters, else standard color) */}
           <button
             onClick={handleCopy}
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium bg-stone-100 hover:bg-stone-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-stone-800 dark:text-zinc-200 border border-stone-300/70 dark:border-zinc-700 transition cursor-pointer"
+            title={
+              isOver5000
+                ? `Copy All (${totalCharacters.toLocaleString()} characters — 5000+ chars)`
+                : 'Copy All (Keyboard C)'
+            }
+            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium border transition cursor-pointer ${
+              isOver5000
+                ? copied
+                  ? 'bg-red-700 hover:bg-red-800 text-white border-red-800 shadow-xs'
+                  : 'bg-red-600 hover:bg-red-700 active:bg-red-800 text-white border-red-700 shadow-xs'
+                : copied
+                ? 'bg-stone-100 hover:bg-stone-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-stone-800 dark:text-zinc-200 border-stone-300/70 dark:border-zinc-700'
+                : 'bg-stone-100 hover:bg-stone-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-stone-800 dark:text-zinc-200 border-stone-300/70 dark:border-zinc-700'
+            }`}
           >
             {copied ? (
               <>
-                <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                <span className="text-emerald-700 dark:text-emerald-400 font-semibold">Copied!</span>
+                <Check
+                  className={`w-4 h-4 ${
+                    isOver5000 ? 'text-white' : 'text-emerald-600 dark:text-emerald-400'
+                  }`}
+                />
+                <span
+                  className={
+                    isOver5000
+                      ? 'text-white font-semibold'
+                      : 'text-emerald-700 dark:text-emerald-400 font-semibold'
+                  }
+                >
+                  Copied!
+                </span>
               </>
             ) : (
               <>
-                <Copy className="w-4 h-4 text-stone-500 dark:text-zinc-400" />
+                <Copy
+                  className={`w-4 h-4 ${
+                    isOver5000 ? 'text-white' : 'text-stone-500 dark:text-zinc-400'
+                  }`}
+                />
                 <span>Copy All</span>
               </>
             )}
